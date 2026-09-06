@@ -18,6 +18,36 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
   {{ 'theme.css' | asset_url | stylesheet_tag }}
+  {%- liquid
+    assign seo_product = product
+    if template == 'index'
+      assign seo_product = settings.hero_product
+      if seo_product == blank or seo_product.title == blank
+        assign seo_product = all_products['pawboard']
+      endif
+    endif
+  -%}
+  {%- if seo_product and seo_product.title != blank -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": {{ seo_product.title | json }},
+    "description": {{ seo_product.description | strip_html | truncate: 300 | json }},
+    "url": {{ shop.url | append: seo_product.url | json }},
+    {%- if seo_product.featured_image -%}"image": {{ seo_product.featured_image | image_url: width: 1200 | prepend: 'https:' | json }},{%- endif -%}
+    "brand": { "@type": "Brand", "name": "PawBoard" },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": {{ settings.rating_value | default: '4.8' | json }}, "reviewCount": {{ settings.review_count | default: '1200' | remove: ',' | remove: '+' | json }} },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "price": {{ seo_product.price | money_without_currency | remove: ',' | json }},
+      "availability": "https://schema.org/{% if seo_product.available %}InStock{% else %}OutOfStock{% endif %}",
+      "url": {{ shop.url | append: seo_product.url | json }}
+    }
+  }
+  </script>
+  {%- endif -%}
 </head>
 <body data-currency-symbol="{{ cart.currency.symbol }}" class="template-{{ template | split: '.' | first }}">
 

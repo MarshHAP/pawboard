@@ -172,13 +172,7 @@
     </div>
     <div class="materials-grid">
       <div class="materials-photo">
-        {%- if settings.img_materials != blank -%}
-          {% render 'photo', image: settings.img_materials, fallback: 'pb-hero-dog.jpg', alt: 'Close-up of the PawBoard textured surface', width: 800 %}
-        {%- elsif hero_product.title != blank and hero_product.media.size > 1 -%}
-          <img src="{{ hero_product.media[1] | image_url: width: 800 }}" alt="{{ hero_product.media[1].alt | default: 'PawBoard detail' | escape }}" loading="lazy">
-        {%- else -%}
-          <img src="{{ 'pb-hero-dog.jpg' | asset_url }}" alt="PawBoard natural wood board" loading="lazy" class="materials-photo--zoom">
-        {%- endif -%}
+        {% render 'photo', image: settings.img_materials, fallback: 'pb-materials.jpg', alt: 'Close-up of the PawBoard natural wood board and textured surface', width: 800 %}
       </div>
       <ul class="materials-list">
         <li>
@@ -240,13 +234,16 @@
             {%- if settings.img_step_2 != blank -%}
               {% render 'photo', image: settings.img_step_2, fallback: 'pb-jack-russell.jpg', alt: 'Offering a treat to encourage scratching', width: 500 %}
             {%- else -%}
-              <div class="step-illustration step-illustration--treat" role="img" aria-label="A treat held above the board">
+              <div class="step-illustration step-illustration--treat" role="img" aria-label="A hand offering a treat above the board">
                 <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
-                  <path d="M40 150 L120 110 L170 150 Z" fill="#E7C9A3"/>
-                  <path d="M40 150 L120 110 L120 130 L40 170 Z" fill="#D8B48A"/>
-                  <path d="M52 146 L118 113 L160 146 Z" fill="#2B2B2B"/>
-                  <path d="M84 62c-9 0-15 6-15 13 0 4 2 7 4 9-2 2-4 5-4 9 0 7 6 13 15 13 6 0 11-3 13-7 2 4 7 7 13 7 9 0 15-6 15-13 0-4-2-7-4-9 2-2 4-5 4-9 0-7-6-13-15-13-6 0-11 3-13 7-2-4-7-7-13-7Z" fill="#C98A4B"/>
-                  <path d="M96 38c-6 0-10 4-10 8s4 6 6 8h16c2-2 6-4 6-8s-4-8-10-8c-2 0-4 1-4 2 0-1-2-2-4-2Z" fill="#F6C7A6"/>
+                  <path d="M28 168 L112 118 L178 160 L178 172 L28 172 Z" fill="#E4C39B"/>
+                  <path d="M28 168 L112 118 L112 132 L28 172 Z" fill="#D2AC7E"/>
+                  <path d="M42 163 L112 123 L166 158 Z" fill="#2A2A2A"/>
+                  <path d="M42 163 L112 123 L166 158" stroke="#F0D9BC" stroke-width="2.5" stroke-linejoin="round"/>
+                  <path d="M118 30c-10 0-16 12-16 26 0 10 3 18 3 26 0 14-6 22-6 34 0 10 8 16 18 16h18c10 0 18-6 18-16 0-12-6-20-6-34 0-8 3-16 3-26 0-14-6-26-16-26h-16Z" fill="#F4C9A8"/>
+                  <path d="M104 78c-8 0-12 6-12 12s4 12 12 12" fill="#F4C9A8"/>
+                  <path d="M134 60c-6 0-10 5-10 9 0 3 1 5 3 7-2 2-3 4-3 7 0 4 4 9 10 9 4 0 7-2 8-4 1 2 4 4 8 4 6 0 10-5 10-9 0-3-1-5-3-7 2-2 3-4 3-7 0-4-4-9-10-9-4 0-7 2-8 4-1-2-4-4-8-4Z" fill="#C98A4B"/>
+                  <path d="M126 76h28" stroke="#B4773B" stroke-width="3" stroke-linecap="round"/>
                 </svg>
               </div>
             {%- endif -%}
