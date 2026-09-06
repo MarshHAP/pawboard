@@ -1,0 +1,23 @@
+<div class="container">
+  <section class="section">
+    <div class="section-head">
+      <h2>{{ collection.title }}</h2>
+      {% if collection.description != blank %}<p>{{ collection.description | strip_html }}</p>{% endif %}
+    </div>
+    {% paginate collection.products by 24 %}
+      {% if collection.products.size > 0 %}
+        <div class="grid">
+          {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-state">
+          <p>Nothing here yet.</p>
+          <a class="btn btn-primary btn-lg" href="{{ routes.root_url }}#buy">Get PawBoard</a>
+        </div>
+      {% endif %}
+      {% if paginate.pages > 1 %}<div class="pagination">{{ paginate | default_pagination }}</div>{% endif %}
+    {% endpaginate %}
+  </section>
+</div>

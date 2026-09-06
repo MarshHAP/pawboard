@@ -1,0 +1,22 @@
+<div class="container page-narrow">
+  <div class="section-head"><h2>Log in</h2></div>
+  {% form 'customer_login', class: 'form-page' %}
+    {{ form.errors | default_errors }}
+    <label for="customer-email">Email</label>
+    <input type="email" name="customer[email]" id="customer-email" autocomplete="email" required>
+    <label for="customer-password">Password</label>
+    <input type="password" name="customer[password]" id="customer-password" autocomplete="current-password" required>
+    <button type="submit" class="btn btn-primary btn-block">Log in</button>
+    <p class="form-links"><a href="#recover">Forgot password?</a> &middot; <a href="{{ routes.account_register_url }}">Create account</a></p>
+  {% endform %}
+  <div id="recover" style="margin-top:36px">
+    <div class="section-head"><h2 style="font-size:22px">Reset your password</h2></div>
+    {% form 'recover_customer_password', class: 'form-page' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}<p class="form-links">We've sent you an email with a reset link.</p>{% endif %}
+      <label for="recover-email">Email</label>
+      <input type="email" name="email" id="recover-email" autocomplete="email" required>
+      <button type="submit" class="btn btn-ghost btn-block">Send reset link</button>
+    {% endform %}
+  </div>
+</div>

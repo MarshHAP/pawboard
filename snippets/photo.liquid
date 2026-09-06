@@ -1,0 +1,10 @@
+{%- comment -%}
+  Responsive photo with a bundled fallback.
+  {% render 'photo', image: settings.img_vet, fallback: 'pb-vet.jpg', alt: 'Vet with dog', width: 900, class: 'x' %}
+{%- endcomment -%}
+{%- assign w = width | default: 900 -%}
+{%- if image != blank -%}
+  <img src="{{ image | image_url: width: w }}" srcset="{{ image | image_url: width: w }} 1x, {{ image | image_url: width: w | times: 2 }} 2x" alt="{{ alt | escape }}" loading="{{ loading | default: 'lazy' }}"{% if class %} class="{{ class }}"{% endif %} width="{{ image.width }}" height="{{ image.height }}">
+{%- else -%}
+  <img src="{{ fallback | asset_url }}" alt="{{ alt | escape }}" loading="{{ loading | default: 'lazy' }}"{% if class %} class="{{ class }}"{% endif %}>
+{%- endif -%}

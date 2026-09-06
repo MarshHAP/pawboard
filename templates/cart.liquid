@@ -1,0 +1,46 @@
+<div class="container page-narrow">
+  {%- if cart.item_count == 0 -%}
+    <div class="empty-state">
+      <h1>Your cart is empty</h1>
+      <p>Nothing in here yet. Let's fix that.</p>
+      <a class="btn btn-primary btn-lg" href="{{ routes.root_url }}#buy">Get PawBoard</a>
+    </div>
+  {%- else -%}
+    <h1>Your cart</h1>
+    <form action="{{ routes.cart_url }}" method="post" novalidate>
+      <table class="cart-table">
+        <thead>
+          <tr><th>Item</th><th>Qty</th><th style="text-align:right">Total</th></tr>
+        </thead>
+        <tbody>
+          {%- for item in cart.items -%}
+            <tr>
+              <td>
+                <div class="cart-item">
+                  {%- if item.image -%}<img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}">{%- endif -%}
+                  <div>
+                    <strong>{{ item.product.title }}</strong>
+                    {%- unless item.variant.title contains 'Default' -%}<div class="muted">{{ item.variant.title }}</div>{%- endunless -%}
+                    <div class="muted">{{ item.final_price | money }} each</div>
+                    <a class="cart-remove" href="{{ item.url_to_remove }}">Remove</a>
+                  </div>
+                </div>
+              </td>
+              <td><input class="qty-input" type="number" min="0" name="updates[]" value="{{ item.quantity }}" aria-label="Quantity for {{ item.title | escape }}"></td>
+              <td style="text-align:right"><strong>{{ item.final_line_price | money }}</strong></td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+
+      <div class="cart-foot">
+        <div class="cart-total">Subtotal: {{ cart.total_price | money }}</div>
+        <p class="muted">Free shipping on all orders. Tax included.</p>
+        <div class="cart-actions">
+          <button type="submit" name="update" class="btn btn-ghost">Update cart</button>
+          <button type="submit" name="checkout" class="btn btn-primary btn-lg">Checkout</button>
+        </div>
+      </div>
+    </form>
+  {%- endif -%}
+</div>

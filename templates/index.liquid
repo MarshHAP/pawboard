@@ -1,0 +1,310 @@
+{%- comment -%} PawBoard one-page store {%- endcomment -%}
+{%- assign hero_product = settings.hero_product -%}
+{%- if hero_product == blank or hero_product.title == blank -%}{%- assign hero_product = all_products['pawboard'] -%}{%- endif -%}
+{%- assign rating = settings.rating_value | default: '4.8' -%}
+{%- assign reviews = settings.review_count | default: '1,200+' -%}
+
+{% render 'hero-buy', product: hero_product %}
+
+{%- comment -%} Benefits {%- endcomment -%}
+<section class="benefits" id="why">
+  <div class="container">
+    <ul class="benefits-grid">
+      <li>
+        <span class="benefit-icon">{% render 'icon', name: 'stress' %}</span>
+        <h3>Relieves stress</h3>
+        <p>No more scary clippers or vet visits just for nails.</p>
+      </li>
+      <li>
+        <span class="benefit-icon">{% render 'icon', name: 'heart' %}</span>
+        <h3>Builds confidence</h3>
+        <p>Turns nail care into a fun, rewarding activity.</p>
+      </li>
+      <li>
+        <span class="benefit-icon">{% render 'icon', name: 'shield' %}</span>
+        <h3>Supports long-term health</h3>
+        <p>Helps prevent overgrown nails and joint issues.</p>
+      </li>
+      <li>
+        <span class="benefit-icon">{% render 'icon', name: 'paw' %}</span>
+        <h3>Strengthens your bond</h3>
+        <p>A positive experience you'll both love.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+{%- comment -%} Vet quote + why dogs prefer {%- endcomment -%}
+<section class="section vet">
+  <div class="container vet-grid">
+    <div class="vet-card">
+      <div class="vet-photo">
+        {% render 'photo', image: settings.img_vet, fallback: 'pb-vet.jpg', alt: 'Veterinarian with a golden retriever', width: 700 %}
+      </div>
+      <div class="vet-quote">
+        <span class="vet-quote-mark">{% render 'icon', name: 'quote' %}</span>
+        <blockquote>
+          <p>&ldquo;PawBoard is a smart, low-stress solution that helps dogs maintain healthy nails through natural behavior and positive reinforcement. I highly recommend it to my clients.&rdquo;</p>
+          <footer>
+            <strong>Dr. Emily Carter</strong>
+            <span>DVM, Small Animal Veterinarian</span>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="why">
+      <span class="why-watermark" aria-hidden="true">{% render 'icon', name: 'paw' %}</span>
+      <div class="section-title section-title--icon">
+        <span class="title-icon">{% render 'icon', name: 'paw' %}</span>
+        <h2>Why dogs prefer<br>PawBoard</h2>
+      </div>
+      <p>Dogs love to scratch &mdash; it's natural! PawBoard taps into this instinct, turning nail care into a fun and satisfying game. With treats and praise, dogs quickly learn to use it on their own.</p>
+      <ul class="check-list">
+        <li><span class="check">{% render 'icon', name: 'check' %}</span> Feels natural and fun</li>
+        <li><span class="check">{% render 'icon', name: 'check' %}</span> Rewards-based training</li>
+        <li><span class="check">{% render 'icon', name: 'check' %}</span> No force, no fear</li>
+        <li><span class="check">{% render 'icon', name: 'check' %}</span> Dogs learn quickly</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Comparison {%- endcomment -%}
+<section class="section compare" id="compare">
+  <div class="container">
+    <div class="section-head">
+      <h2>A kinder, calmer alternative</h2>
+      <p>Traditional nail trimming can be stressful for dogs and owners. PawBoard offers a gentle, positive way to keep nails healthy &mdash; no clippers, no struggle.</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card compare-card--old">
+        <h3>Traditional Nail Clipping</h3>
+        <div class="compare-body">
+          <div class="compare-photo">
+            {% render 'photo', image: settings.img_clipping, fallback: 'pb-clipping.jpg', alt: 'A puppy having its nails clipped', width: 600 %}
+          </div>
+          <ul class="compare-list">
+            <li><span class="mark mark--x">{% render 'icon', name: 'x' %}</span> Can cause anxiety and fear</li>
+            <li><span class="mark mark--x">{% render 'icon', name: 'x' %}</span> Risk of cutting too short</li>
+            <li><span class="mark mark--x">{% render 'icon', name: 'x' %}</span> Often requires vet visits</li>
+            <li><span class="mark mark--x">{% render 'icon', name: 'x' %}</span> Stressful for both dog and owner</li>
+          </ul>
+        </div>
+      </div>
+      <div class="compare-card compare-card--new">
+        <h3>With PawBoard</h3>
+        <div class="compare-body">
+          <div class="compare-photo">
+            {% render 'photo', image: settings.img_with_pawboard, fallback: 'pb-golden-board.jpg', alt: 'A golden retriever using PawBoard', width: 600 %}
+          </div>
+          <ul class="compare-list">
+            <li><span class="mark mark--check">{% render 'icon', name: 'check' %}</span> Natural and stress-free</li>
+            <li><span class="mark mark--check">{% render 'icon', name: 'check' %}</span> Dogs stay in control</li>
+            <li><span class="mark mark--check">{% render 'icon', name: 'check' %}</span> Builds confidence at home</li>
+            <li><span class="mark mark--check">{% render 'icon', name: 'check' %}</span> A positive, rewarding experience</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="compare-script">Happier dogs<br>healthier lives <span class="script-heart">{% render 'icon', name: 'heart' %}</span></div>
+  </div>
+</section>
+
+{%- comment -%} Reviews {%- endcomment -%}
+<section class="section reviews" id="reviews">
+  <div class="container">
+    <div class="section-title section-title--split">
+      <div class="section-title--icon">
+        <span class="title-icon">{% render 'icon', name: 'paw' %}</span>
+        <div>
+          <h2>Real dogs. Real results.</h2>
+          <p>Join thousands of happy pups and their humans.</p>
+        </div>
+      </div>
+      <div class="reviews-summary">
+        <div class="reviews-summary-stars">{% render 'stars', size: 'lg' %} <strong>{{ rating }} out of 5</strong></div>
+        <p>Based on {{ reviews }} verified reviews</p>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <article class="review-card">
+        <div class="review-photo">{% render 'photo', image: settings.img_review_1, fallback: 'pb-jack-russell.jpg', alt: 'Jack Russell puppy beside PawBoard', width: 500 %}</div>
+        <div class="review-body">
+          <div class="review-top">{% render 'stars' %} <span class="pill pill--green">{% render 'icon', name: 'check' %} Best!</span></div>
+          <h3>&ldquo;So easy to train!&rdquo;</h3>
+          <p>My dog picked it up in just a few days. Now she scratches it every morning for a treat. No more nail trimming stress for either of us!</p>
+          <footer><strong>Sarah L.</strong><span class="verified">{% render 'icon', name: 'verified' %} Verified Buyer</span></footer>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-photo">{% render 'photo', image: settings.img_review_2, fallback: 'pb-collie.jpg', alt: 'Border collie beside PawBoard', width: 500 %}</div>
+        <div class="review-body">
+          <div class="review-top">{% render 'stars' %}</div>
+          <h3>&ldquo;Game changer!&rdquo;</h3>
+          <p>I was skeptical at first, but this actually works. My dog loves it and his nails stay short and smooth. Such a simple but brilliant idea.</p>
+          <footer><strong>Mike T.</strong><span class="verified">{% render 'icon', name: 'verified' %} Verified Buyer</span></footer>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-photo">{% render 'photo', image: settings.img_review_3, fallback: 'pb-golden-board.jpg', alt: 'Golden retriever using PawBoard', width: 500 %}</div>
+        <div class="review-body">
+          <div class="review-top">{% render 'stars' %}</div>
+          <h3>&ldquo;Worth every penny.&rdquo;</h3>
+          <p>High quality, easy to set up, and my dog genuinely enjoys using it. I love that it's a natural solution!</p>
+          <footer><strong>Jessica M.</strong><span class="verified">{% render 'icon', name: 'verified' %} Verified Buyer</span></footer>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Materials {%- endcomment -%}
+<section class="section materials" id="materials">
+  <div class="container">
+    <div class="section-title section-title--icon">
+      <span class="title-icon">{% render 'icon', name: 'paw' %}</span>
+      <div>
+        <h2>Quality materials. A safer choice.</h2>
+        <p>Built with your dog's safety and well-being in mind.</p>
+      </div>
+    </div>
+    <div class="materials-grid">
+      <div class="materials-photo">
+        {%- if settings.img_materials != blank -%}
+          {% render 'photo', image: settings.img_materials, fallback: 'pb-hero-dog.jpg', alt: 'Close-up of the PawBoard textured surface', width: 800 %}
+        {%- elsif hero_product.title != blank and hero_product.media.size > 1 -%}
+          <img src="{{ hero_product.media[1] | image_url: width: 800 }}" alt="{{ hero_product.media[1].alt | default: 'PawBoard detail' | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ 'pb-hero-dog.jpg' | asset_url }}" alt="PawBoard natural wood board" loading="lazy" class="materials-photo--zoom">
+        {%- endif -%}
+      </div>
+      <ul class="materials-list">
+        <li>
+          <span class="material-icon">{% render 'icon', name: 'layers' %}</span>
+          <div><h3>Durable, natural wood</h3><p>Sturdy, pet-safe wood built to last.</p></div>
+        </li>
+        <li>
+          <span class="material-icon">{% render 'icon', name: 'texture' %}</span>
+          <div><h3>Textured, non-slip surface</h3><p>Provides the perfect grip for safe scratching.</p></div>
+        </li>
+        <li>
+          <span class="material-icon">{% render 'icon', name: 'stable' %}</span>
+          <div><h3>Stable, anti-slip design</h3><p>Keeps the board steady during use.</p></div>
+        </li>
+        <li>
+          <span class="material-icon">{% render 'icon', name: 'safe' %}</span>
+          <div><h3>Pet-safe and non-toxic</h3><p>Free from harmful chemicals or finishes.</p></div>
+        </li>
+      </ul>
+      <div class="materials-card">
+        <span class="materials-card-icon">{% render 'icon', name: 'leaf' %}</span>
+        <h3>Safe for your dog.<br>Better for the planet.</h3>
+        <p>Made from natural, sustainable materials for a healthier, happier future &mdash; for pets and the planet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} How to set up {%- endcomment -%}
+<section class="section setup" id="how-it-works">
+  <div class="container">
+    <div class="section-title section-title--icon">
+      <span class="title-icon">{% render 'icon', name: 'paw' %}</span>
+      <div>
+        <h2>How to set up PawBoard</h2>
+        <p>Get started in just a few minutes!</p>
+      </div>
+    </div>
+    <div class="setup-grid">
+      <ol class="steps">
+        <li class="step">
+          <div class="step-photo">
+            <span class="step-num">1</span>
+            {%- if settings.img_step_1 != blank -%}
+              {% render 'photo', image: settings.img_step_1, fallback: 'pb-hero-dog.jpg', alt: 'PawBoard placed on a flat surface', width: 500 %}
+            {%- elsif hero_product.title != blank and hero_product.featured_media -%}
+              <img src="{{ hero_product.featured_media | image_url: width: 500 }}" alt="PawBoard placed on a flat surface" loading="lazy">
+            {%- else -%}
+              <img src="{{ 'pb-hero-dog.jpg' | asset_url }}" alt="PawBoard placed on a flat surface" loading="lazy">
+            {%- endif -%}
+          </div>
+          <h3>Set it up</h3>
+          <p>Unbox and place PawBoard on a flat surface.</p>
+        </li>
+        <li class="step-arrow" aria-hidden="true">{% render 'icon', name: 'chevron-right' %}</li>
+        <li class="step">
+          <div class="step-photo">
+            <span class="step-num">2</span>
+            {%- if settings.img_step_2 != blank -%}
+              {% render 'photo', image: settings.img_step_2, fallback: 'pb-jack-russell.jpg', alt: 'Offering a treat to encourage scratching', width: 500 %}
+            {%- else -%}
+              <div class="step-illustration step-illustration--treat" role="img" aria-label="A treat held above the board">
+                <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
+                  <path d="M40 150 L120 110 L170 150 Z" fill="#E7C9A3"/>
+                  <path d="M40 150 L120 110 L120 130 L40 170 Z" fill="#D8B48A"/>
+                  <path d="M52 146 L118 113 L160 146 Z" fill="#2B2B2B"/>
+                  <path d="M84 62c-9 0-15 6-15 13 0 4 2 7 4 9-2 2-4 5-4 9 0 7 6 13 15 13 6 0 11-3 13-7 2 4 7 7 13 7 9 0 15-6 15-13 0-4-2-7-4-9 2-2 4-5 4-9 0-7-6-13-15-13-6 0-11 3-13 7-2-4-7-7-13-7Z" fill="#C98A4B"/>
+                  <path d="M96 38c-6 0-10 4-10 8s4 6 6 8h16c2-2 6-4 6-8s-4-8-10-8c-2 0-4 1-4 2 0-1-2-2-4-2Z" fill="#F6C7A6"/>
+                </svg>
+              </div>
+            {%- endif -%}
+          </div>
+          <h3>Add motivation</h3>
+          <p>Use your dog's favorite treats to encourage scratching.</p>
+        </li>
+        <li class="step-arrow" aria-hidden="true">{% render 'icon', name: 'chevron-right' %}</li>
+        <li class="step">
+          <div class="step-photo">
+            <span class="step-num">3</span>
+            {% render 'photo', image: settings.img_step_3, fallback: 'pb-golden-board.jpg', alt: 'A dog learning to use PawBoard', width: 500 %}
+          </div>
+          <h3>Let them learn</h3>
+          <p>Guide your dog at first, then let them enjoy and practice!</p>
+        </li>
+      </ol>
+      <aside class="pro-tip">
+        <span class="pro-tip-icon">{% render 'icon', name: 'party' %}</span>
+        <h3>Pro tip:</h3>
+        <p>Keep sessions short, positive and rewarding. Most dogs learn within a few days!</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} FAQ {%- endcomment -%}
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="section-title section-title--icon">
+      <span class="title-icon">{% render 'icon', name: 'paw' %}</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-grid">
+      <details class="faq-item">
+        <summary>How does PawBoard work? {% render 'icon', name: 'chevron-down' %}</summary>
+        <div class="faq-answer"><p>PawBoard uses a textured, sandpaper-style surface on an angled wooden board. When your dog scratches at it (usually to reach a treat), their nails are gently filed down &mdash; no clippers, no restraint, no stress.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Is it safe for puppies? {% render 'icon', name: 'chevron-down' %}</summary>
+        <div class="faq-answer"><p>Yes. The surface only files the nail tip, so it can't cut the quick. Puppies from around 12 weeks can start with short, supervised sessions.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>What size dogs can use it? {% render 'icon', name: 'chevron-down' %}</summary>
+        <div class="faq-answer"><p>PawBoard suits small to large breeds. The wide, stable base means everything from a Chihuahua to a Labrador can use it comfortably.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>What materials is it made from? {% render 'icon', name: 'chevron-down' %}</summary>
+        <div class="faq-answer"><p>Natural, sustainably sourced wood with a pet-safe, non-toxic textured surface and an anti-slip base. No harmful chemicals or finishes.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>How long does it take to see results? {% render 'icon', name: 'chevron-down' %}</summary>
+        <div class="faq-answer"><p>Most dogs learn the game within a few days. With a couple of short sessions a week, you'll notice shorter, smoother nails within two to three weeks.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Do you offer a guarantee? {% render 'icon', name: 'chevron-down' %}</summary>
+        <div class="faq-answer"><p>Yes &mdash; a 30-day money-back guarantee. If PawBoard isn't right for you and your pup, email <a href="mailto:{{ shop.email }}">{{ shop.email }}</a> for a full refund.</p></div>
+      </details>
+    </div>
+  </div>
+</section>

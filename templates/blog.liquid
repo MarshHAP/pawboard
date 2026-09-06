@@ -1,0 +1,19 @@
+<div class="container">
+  <section class="section">
+    <div class="section-head"><h2>{{ blog.title }}</h2></div>
+    {% paginate blog.articles by 12 %}
+      <div class="grid">
+        {% for article in blog.articles %}
+          <a class="card" href="{{ article.url }}">
+            {% if article.image %}<div class="card-media"><img src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title | escape }}" loading="lazy"></div>{% endif %}
+            <div class="card-body">
+              <div class="card-title">{{ article.title }}</div>
+              <div class="muted">{{ article.published_at | date: '%b %d, %Y' }}</div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+      {% if paginate.pages > 1 %}<div class="pagination">{{ paginate | default_pagination }}</div>{% endif %}
+    {% endpaginate %}
+  </section>
+</div>

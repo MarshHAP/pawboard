@@ -1,0 +1,8 @@
+<div class="container page-narrow">
+  <div class="section-head">
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.published_at | date: '%b %d, %Y' }}</p>
+  </div>
+  {% if article.image %}<p><img src="{{ article.image | image_url: width: 1200 }}" alt="{{ article.title | escape }}" style="border-radius:16px"></p>{% endif %}
+  <div class="rte">{{ article.content }}</div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container page-narrow">
+  <div class="section-head">
+    <h2>Order {{ order.name }}</h2>
+    <p>Placed {{ order.created_at | date: '%b %d, %Y' }}</p>
+  </div>
+  <table class="account-table">
+    <tr><th>Item</th><th>Qty</th><th>Price</th></tr>
+    {% for line_item in order.line_items %}
+      <tr>
+        <td>{{ line_item.title }}</td>
+        <td>{{ line_item.quantity }}</td>
+        <td>{{ line_item.final_line_price | money }}</td>
+      </tr>
+    {% endfor %}
+    <tr><td colspan="2"><strong>Subtotal</strong></td><td>{{ order.subtotal_price | money }}</td></tr>
+    <tr><td colspan="2"><strong>Shipping</strong></td><td>{{ order.shipping_price | money }}</td></tr>
+    <tr><td colspan="2"><strong>Total</strong></td><td><strong>{{ order.total_price | money }}</strong></td></tr>
+  </table>
+  <p style="margin-top:22px"><a href="{{ routes.account_url }}" class="link">&larr; Back to account</a></p>
+</div>

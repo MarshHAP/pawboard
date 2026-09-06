@@ -1,0 +1,22 @@
+{% layout none %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gift card | PawBoard</title>
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+</head>
+<body>
+  <div class="container page-narrow">
+    <section class="section center">
+      <div class="section-head">
+        <h2>Your PawBoard gift card</h2>
+        <p>Current balance: <strong>{{ gift_card.balance | money }}</strong></p>
+      </div>
+      <p class="gift-code">{{ gift_card.code | format_code }}</p>
+      <a class="btn btn-primary" href="{{ shop.url }}">Start shopping</a>
+    </section>
+  </div>
+</body>
+</html>

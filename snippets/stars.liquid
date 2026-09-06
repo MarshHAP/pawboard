@@ -1,0 +1,4 @@
+{%- comment -%} Five orange stars. Usage: {% render 'stars', size: 'lg' %} {%- endcomment -%}
+<span class="stars{% if size %} stars--{{ size }}{% endif %}" aria-label="Rated 5 out of 5">
+  {%- for i in (1..5) -%}{% render 'icon', name: 'star' %}{%- endfor -%}
+</span>

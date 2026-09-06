@@ -1,0 +1,72 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "PawBoard",
+    "theme_version": "1.0.0",
+    "theme_author": "PawBoard",
+    "theme_documentation_url": "https://github.com/MarshHAP/pawboard",
+    "theme_support_url": "https://github.com/MarshHAP/pawboard"
+  },
+  {
+    "name": "Product",
+    "settings": [
+      {
+        "type": "product",
+        "id": "hero_product",
+        "label": "Hero product",
+        "info": "The product sold on the home page. Falls back to the product with handle 'pawboard'."
+      },
+      {
+        "type": "text",
+        "id": "rating_value",
+        "label": "Rating",
+        "default": "4.8"
+      },
+      {
+        "type": "text",
+        "id": "review_count",
+        "label": "Review count label",
+        "default": "1,200+"
+      },
+      {
+        "type": "url",
+        "id": "video_url",
+        "label": "'Watch how it works' video",
+        "info": "YouTube, Vimeo or a direct .mp4 link. Leave blank to scroll to the setup guide instead."
+      }
+    ]
+  },
+  {
+    "name": "Photos",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Every photo has a built-in default. Upload your own to override it."
+      },
+      { "type": "image_picker", "id": "img_hero_1", "label": "Hero gallery 1 (used when the product has no images)" },
+      { "type": "image_picker", "id": "img_hero_2", "label": "Hero gallery 2" },
+      { "type": "image_picker", "id": "img_hero_3", "label": "Hero gallery 3" },
+      { "type": "image_picker", "id": "img_hero_4", "label": "Hero gallery 4" },
+      { "type": "image_picker", "id": "img_hero_5", "label": "Hero gallery 5" },
+      { "type": "image_picker", "id": "img_vet", "label": "Vet photo" },
+      { "type": "image_picker", "id": "img_clipping", "label": "Traditional nail clipping photo" },
+      { "type": "image_picker", "id": "img_with_pawboard", "label": "With PawBoard photo" },
+      { "type": "image_picker", "id": "img_review_1", "label": "Review 1 photo" },
+      { "type": "image_picker", "id": "img_review_2", "label": "Review 2 photo" },
+      { "type": "image_picker", "id": "img_review_3", "label": "Review 3 photo" },
+      { "type": "image_picker", "id": "img_materials", "label": "Materials close-up photo" },
+      { "type": "image_picker", "id": "img_step_1", "label": "Step 1 photo" },
+      { "type": "image_picker", "id": "img_step_2", "label": "Step 2 photo" },
+      { "type": "image_picker", "id": "img_step_3", "label": "Step 3 photo" }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      { "type": "url", "id": "social_instagram", "label": "Instagram" },
+      { "type": "url", "id": "social_facebook", "label": "Facebook" },
+      { "type": "url", "id": "social_youtube", "label": "YouTube" },
+      { "type": "url", "id": "social_pinterest", "label": "Pinterest" }
+    ]
+  }
+]

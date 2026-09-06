@@ -1,0 +1,11 @@
+{%- comment -%} Product page: the same hero + buy box as the home page. {%- endcomment -%}
+{% render 'hero-buy', product: product %}
+
+{%- if product.description != blank -%}
+<section class="section product-details">
+  <div class="container page-narrow">
+    <div class="rte">{{ product.description }}</div>
+    <p class="center" style="margin-top:28px"><a class="btn btn-ghost" href="{{ routes.root_url }}#why">See why dogs prefer PawBoard</a></p>
+  </div>
+</section>
+{%- endif -%}

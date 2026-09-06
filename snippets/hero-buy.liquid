@@ -1,0 +1,155 @@
+{%- comment -%}
+  Hero: gallery + buy box. Usage: {% render 'hero-buy', product: product %}
+{%- endcomment -%}
+{%- assign rating = settings.rating_value | default: '4.8' -%}
+{%- assign reviews = settings.review_count | default: '1,200+' -%}
+{%- assign has_product = false -%}
+{%- if product and product.title != blank -%}{%- assign has_product = true -%}{%- endif -%}
+
+<section class="hero" id="buy">
+  <div class="container hero-grid">
+
+    <div class="hero-gallery" data-gallery>
+      <div class="hero-stage">
+        <div class="hero-slides">
+          {%- if has_product and product.media.size > 0 -%}
+            {%- for media in product.media limit: 8 -%}
+              <div class="hero-slide{% if forloop.first %} is-active{% endif %}" data-slide>
+                {%- if media.media_type == 'image' -%}
+                  <img src="{{ media | image_url: width: 1000 }}" srcset="{{ media | image_url: width: 1000 }} 1x, {{ media | image_url: width: 2000 }} 2x" alt="{{ media.alt | default: product.title | escape }}"{% unless forloop.first %} loading="lazy"{% endunless %} width="{{ media.width }}" height="{{ media.height }}">
+                {%- elsif media.media_type == 'video' -%}
+                  {{ media | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+                {%- else -%}
+                  {{ media | media_tag }}
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            {%- assign fallbacks = 'pb-hero-dog.jpg,pb-golden-board.jpg,pb-jack-russell.jpg,pb-collie.jpg,pb-vet.jpg' | split: ',' -%}
+            {%- for fb in fallbacks -%}
+              {%- assign key = 'img_hero_' | append: forloop.index -%}
+              <div class="hero-slide{% if forloop.first %} is-active{% endif %}" data-slide>
+                {%- if forloop.first -%}
+                  {% render 'photo', image: settings[key], fallback: fb, alt: 'PawBoard dog nail file board', width: 1000, loading: 'eager' %}
+                {%- else -%}
+                  {% render 'photo', image: settings[key], fallback: fb, alt: 'PawBoard dog nail file board', width: 1000 %}
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+
+        <div class="hero-script">Healthy nails<br>Happier pups <span class="script-heart">{% render 'icon', name: 'heart' %}</span></div>
+
+        <button class="hero-play" type="button" data-video-open{% if settings.video_url != blank %} data-video-src="{{ settings.video_url }}"{% endif %}>
+          <span class="hero-play-btn">{% render 'icon', name: 'play' %}</span>
+          <span class="hero-play-label">Watch<br>how it works</span>
+        </button>
+
+        <div class="hero-caption">
+          <span class="hero-caption-icon">{% render 'icon', name: 'paw' %}</span>
+          <span>A simple, natural<br>way to keep nails healthy</span>
+        </div>
+      </div>
+
+      <div class="hero-thumbs-wrap">
+        <button class="thumb-nav thumb-nav--prev" type="button" aria-label="Previous image" data-gallery-prev>{% render 'icon', name: 'chevron-left' %}</button>
+        <div class="hero-thumbs" data-thumbs>
+          {%- if has_product and product.media.size > 0 -%}
+            {%- for media in product.media limit: 8 -%}
+              <button class="thumb{% if forloop.first %} is-active{% endif %}" type="button" data-thumb aria-label="Show image {{ forloop.index }}">
+                <img src="{{ media.preview_image | image_url: width: 200 }}" alt="" loading="lazy" width="{{ media.preview_image.width }}" height="{{ media.preview_image.height }}">
+              </button>
+            {%- endfor -%}
+          {%- else -%}
+            {%- assign fallbacks = 'pb-hero-dog.jpg,pb-golden-board.jpg,pb-jack-russell.jpg,pb-collie.jpg,pb-vet.jpg' | split: ',' -%}
+            {%- for fb in fallbacks -%}
+              {%- assign key = 'img_hero_' | append: forloop.index -%}
+              <button class="thumb{% if forloop.first %} is-active{% endif %}" type="button" data-thumb aria-label="Show image {{ forloop.index }}">
+                {% render 'photo', image: settings[key], fallback: fb, alt: '', width: 200 %}
+              </button>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+        <button class="thumb-nav thumb-nav--next" type="button" aria-label="Next image" data-gallery-next>{% render 'icon', name: 'chevron-right' %}</button>
+      </div>
+    </div>
+
+    <div class="buy-box" data-buybox>
+      <span class="pill pill--peach">{% render 'icon', name: 'paw' %} Vet-trusted</span>
+      <h1 class="buy-title">{% if has_product %}{{ product.title }}{% else %}PawBoard{% endif %}</h1>
+      <p class="buy-subtitle">Nail Care, The Natural Way</p>
+      <p class="buy-lede">Let your dog file their own nails &mdash; safely, naturally and happily. PawBoard turns nail care into a fun, rewarding game, reducing stress for both you and your pup.</p>
+
+      <a class="buy-rating" href="#reviews">
+        {% render 'stars' %}
+        <strong>{{ rating }}</strong> <span>({{ reviews }} reviews)</span>
+      </a>
+
+      <ul class="buy-badges">
+        <li><span class="badge-icon">{% render 'icon', name: 'shield' %}</span><span>30-Day<br>Guarantee</span></li>
+        <li><span class="badge-icon">{% render 'icon', name: 'tree' %}</span><span>Natural<br>Wood Build</span></li>
+        <li><span class="badge-icon">{% render 'icon', name: 'paw' %}</span><span>Positive<br>Reinforcement</span></li>
+      </ul>
+
+      {%- if has_product -%}
+        {%- assign v = product.selected_or_first_available_variant -%}
+        <form method="post" action="{{ routes.cart_add_url }}" class="buy-form" data-atc-form>
+          <input type="hidden" name="id" value="{{ v.id }}" data-variant-id>
+          <input type="hidden" name="quantity" value="1">
+
+          <div class="buy-price-row">
+            <div class="buy-price">
+              <span class="price-now" data-price-now>{{ v.price | money }}</span>
+              {%- if v.compare_at_price > v.price -%}<span class="price-was" data-price-was>{{ v.compare_at_price | money }}</span>{%- endif -%}
+            </div>
+            <div class="buy-shipping">
+              {% render 'icon', name: 'truck' %}
+              <span><strong>FREE Shipping</strong><br>on all orders</span>
+            </div>
+          </div>
+
+          {%- if product.variants.size > 1 -%}
+            <div class="buy-variants">
+              <label for="variant-select" class="buy-variants-label">Option</label>
+              <select id="variant-select" class="select" data-variant-select>
+                {%- for variant in product.variants -%}
+                  <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.compare_at_price > variant.price %} data-compare="{{ variant.compare_at_price | money }}"{% endif %}{% unless variant.available %} disabled{% endunless %}{% if variant.id == v.id %} selected{% endif %}>{{ variant.title }}{% unless variant.available %} &mdash; sold out{% endunless %}</option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- endif -%}
+
+          <button class="btn btn-primary btn-xl btn-block" type="submit" data-atc{% unless v.available %} disabled{% endunless %}>
+            {% render 'icon', name: 'cart' %}
+            <span data-atc-label>{% if v.available %}Add to Cart{% else %}Sold out{% endif %}</span>
+          </button>
+        </form>
+      {%- else -%}
+        <div class="buy-price-row">
+          <div class="buy-price"><span class="price-now">{{ 5900 | money }}</span></div>
+          <div class="buy-shipping">
+            {% render 'icon', name: 'truck' %}
+            <span><strong>FREE Shipping</strong><br>on all orders</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-xl btn-block" type="button" disabled>{% render 'icon', name: 'cart' %}<span>Coming soon</span></button>
+      {%- endif -%}
+
+      <ul class="payment-icons" aria-label="Accepted payment methods">
+        <li class="pay pay-visa">VISA</li>
+        <li class="pay pay-mc"><span></span><span></span></li>
+        <li class="pay pay-amex">AMEX</li>
+        <li class="pay pay-paypal">Pay<em>Pal</em></li>
+        <li class="pay pay-apple">&#63743; Pay</li>
+        <li class="pay pay-google">G Pay</li>
+      </ul>
+
+      <ul class="buy-assurances">
+        <li>{% render 'icon', name: 'check' %} 30-day money-back guarantee</li>
+        <li>{% render 'icon', name: 'check' %} Safe &amp; secure checkout</li>
+        <li>{% render 'icon', name: 'check' %} Designed with vets and dog trainers</li>
+      </ul>
+    </div>
+  </div>
+</section>
