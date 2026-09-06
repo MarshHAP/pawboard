@@ -26,6 +26,9 @@
     elsif all_products['pawboard'].featured_image
       assign og_image = all_products['pawboard'].featured_image | image_url: width: 1200
     endif
+    unless og_image contains 'https:'
+      assign og_image = og_image | prepend: 'https:'
+    endunless
   -%}
   <meta property="og:type" content="{% if template contains 'product' %}product{% else %}website{% endif %}">
   <meta property="og:site_name" content="PawBoard">
