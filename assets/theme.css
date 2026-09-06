@@ -136,6 +136,7 @@ h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
 /* Hero ------------------------------------------------------------------- */
 .hero { padding: 32px 0 56px; }
 .hero-grid { display: grid; grid-template-columns: 1.12fr 1fr; gap: 52px; align-items: start; }
+.hero-grid > * { min-width: 0; }
 
 .hero-stage { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--surface); aspect-ratio: 1.12 / 1; box-shadow: var(--shadow); }
 .hero-slides, .hero-slide { position: absolute; inset: 0; }
