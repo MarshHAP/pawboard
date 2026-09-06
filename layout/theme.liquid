@@ -11,6 +11,32 @@
     {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
   {%- endif -%}
   <link rel="canonical" href="{{ canonical_url }}">
+  {%- liquid
+    assign og_title = 'PawBoard - Nail care, the natural way'
+    assign og_description = 'Let your dog file their own nails - safely, naturally and happily. PawBoard turns nail care into a fun, rewarding game.'
+    if template != 'index' and page_title != blank
+      assign og_title = page_title | replace: shop.name, 'PawBoard'
+    endif
+    if template != 'index' and page_description != blank
+      assign og_description = page_description
+    endif
+    assign og_image = 'pb-hero-dog.jpg' | asset_url
+    if product.featured_image
+      assign og_image = product.featured_image | image_url: width: 1200
+    elsif all_products['pawboard'].featured_image
+      assign og_image = all_products['pawboard'].featured_image | image_url: width: 1200
+    endif
+  -%}
+  <meta property="og:type" content="{% if template contains 'product' %}product{% else %}website{% endif %}">
+  <meta property="og:site_name" content="PawBoard">
+  <meta property="og:title" content="{{ og_title | escape }}">
+  <meta property="og:description" content="{{ og_description | escape }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ og_title | escape }}">
+  <meta name="twitter:description" content="{{ og_description | escape }}">
+  <meta name="twitter:image" content="{{ og_image }}">
   <link rel="icon" type="image/svg+xml" href="{{ 'favicon.svg' | asset_url }}">
   <meta name="theme-color" content="#F26F21">
   {{ content_for_header }}
@@ -145,7 +171,7 @@
     </div>
   </footer>
 
-  <div class="toast" data-toast hidden>
+  <div class="toast" data-toast role="status" aria-live="polite" hidden>
     {% render 'icon', name: 'check-circle' %}
     <span data-toast-text>Added to cart</span>
     <a href="{{ routes.cart_url }}">View cart</a>
