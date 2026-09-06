@@ -29,7 +29,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
 body {
   margin: 0;
   font-family: var(--font);
@@ -232,7 +232,7 @@ h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
 .vet-quote footer span { color: var(--ink-soft); }
 .why { position: relative; }
 .why > p { color: var(--ink-soft); max-width: 460px; }
-.why-watermark { position: absolute; right: -10px; bottom: -30px; color: var(--peach-2); opacity: .8; pointer-events: none; }
+.why-watermark { position: absolute; right: 0; bottom: -30px; color: var(--peach-2); opacity: .8; pointer-events: none; }
 .why-watermark .icon { width: 150px; height: 150px; transform: rotate(-18deg); }
 .check-list { margin-top: 26px; display: flex; flex-direction: column; gap: 14px; position: relative; }
 .check-list li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 500; }
